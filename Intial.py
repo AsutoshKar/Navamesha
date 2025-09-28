@@ -29,4 +29,18 @@ model.fit(x_train, y_train)
 print("Model has been trained successfully")
 
 # taking one data from the user which is the spectroscope.
-print
+print("\nEnter FTIR intensity values for 3 peaks:")
+p1 = float(input("Intensity at 2915 cm-1: "))
+p2 = float(input("Intensity at 1730 cm-1: "))
+p3 = float(input("Intensity at 1450 cm-1: "))
+
+# convert the data came from spectroscope to setting up an array
+test_input = numpy.array([p1, p2, p3]).reshape(1, -1)  # Reshape to 2D array
+# prediction using trained model to guess or tell whether it is a plastic or not
+prediction = model.predict(test_input)
+
+# final solution that it is microplastic or not
+if prediction[0] == 1:
+    print("The sample is predicted as Plastic")
+else:
+    print("The sample is predicted as Non-Plastic")
